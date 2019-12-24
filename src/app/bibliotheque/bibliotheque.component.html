@@ -1,0 +1,48 @@
+<div class="general-container">
+    <!-- <div class = "depot-container" 
+    [cdkDropListData]="depot"
+    [cdkDropListConnectedTo]="[BibliothequeArticles]" 
+    cdkDropList (cdkDropListDropped)="drop($event)"
+    >
+        <div class ="box" cdkDrag *ngFor ="let article of depotArticles">
+            {{article.label}}<br> 
+            {{article.content}}
+        </div>
+    </div> -->
+    <div
+    cdkDropList
+    #bibliothequeArticlesList="cdkDropList"
+    [cdkDropListData]="bibliothequeArticles"
+    class="bibliotheque-container"
+    (cdkDropListDropped)="drop($event)">
+    <div class="box" *ngFor="let article of bibliothequeArticles" cdkDrag>
+        {{article.label}}<br>
+        {{article.content}};
+    </div>
+    </div>
+
+
+    <div
+    cdkDropList
+    #depotArticlesList="cdkDropList"
+    [cdkDropListData]="depotArticles"
+    [cdkDropListConnectedTo]="[bibliothequeArticlesList]"
+    class="depot-container"
+    (cdkDropListDropped)="drop($event)">
+    <div class="box" *ngFor="let article of depotArticles" cdkDrag>
+        {{article.label}}</div>
+    </div>
+</div>
+
+
+<!--     <div class = "bibliotheque-container"
+    [cdkDropListData]="bibliotheque"
+    [cdkDropListConnectedTo]="[doneList]" 
+    cdkDropList (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="[depotArticles]">
+        <div class ="box" cdkDrag *ngFor ="let article of BibliothequeArticles">
+            {{article.label}}
+        
+        </div>
+    </div>
+</div> -->
