@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BibliothequeComponent } from './bibliotheque/bibliotheque.component';
 import { ViewHtmlComponent } from './view-html/view-html.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { ViewHtmlComponent } from './view-html/view-html.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    DragDropModule
+    DragDropModule,
+    NgbModule,
+    TooltipModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

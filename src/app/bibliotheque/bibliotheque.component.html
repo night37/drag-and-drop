@@ -19,7 +19,22 @@
              <button class="box" *ngFor="let article of depotArticles" cdkDrag>
                 {{article.label}}<br>
                 {{article.content}}
-                <button (click)="edit-txt()">Modifier le texte</button>    
+                <button class="btn btn-xs btn-outline-primary" (click)="open(content)">Modifier le texte</button>
+                <ng-template #content let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control" [(ngModel)]="article.label">
+                        <input type="text" class="form-control" [(ngModel)]="article.content">
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="c('Save click')">Save</button>
+                    </div>
+                  </ng-template>
             </button>
     </div> 
 </div>
