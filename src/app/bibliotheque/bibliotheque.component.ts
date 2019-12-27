@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, copyArrayItem} from '@angular/cdk/drag-drop';
+
+
+
+
+
 
 @Component({
   selector: 'app-bibliotheque',
   templateUrl: './bibliotheque.component.html',
   styleUrls: ['./bibliotheque.component.css']
 })
-export class BibliothequeComponent  {
 
-  depotArticles = [
+export class BibliothequeComponent  {
+  
+  bibliothequeArticles = [
     {
       id: 1,
       label: "titre1", 
@@ -41,24 +47,24 @@ export class BibliothequeComponent  {
     },
     
   ];
-  bibliothequeArticles = [
-    
+  depotArticles = [
+    {
+      id: 1,
+      label: "titre1", 
+      content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia blanditiis amet sed doloribus temporibus. Quaerat, quibusdam, incidunt ab amet, esse nostrum perspiciatis perferendis neque eos ad beatae voluptas dolore doloremque."
+    },
   ]
 
-
-
-
-
-  
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      
+      console.log(this.bibliothequeArticles[4])
     } else {
       copyArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
-                        event.currentIndex);
+                        event.currentIndex);                        
     }
-  }
+  }   
+
 }
