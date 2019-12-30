@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import * as data from "../json/data.json"
 
 
 
@@ -84,6 +84,15 @@ export class BibliothequeComponent  {
   open(content) {
     this.modalService.open(content);
   }
+  ngOnInit() {
+    const importation =  (data  as  any).default
+    this.bibliothequeArticles.push(importation);
+    console.log(importation)
+    console.log(this.bibliothequeArticles)
+  }
+  edit(){
 
+    
+  }
 
 }

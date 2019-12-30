@@ -6,7 +6,7 @@
         [cdkDropListConnectedTo]="[depotArticlesList]"
         class="bibliotheque-container"
         (cdkDropListDropped)="drop($event)">
-        <div class="box" *ngFor="let article of bibliothequeArticles" cdkDrag>
+        <div class="biblio-box" *ngFor="let article of bibliothequeArticles" cdkDrag>
             {{article.label}}</div>
          
     </div>
@@ -16,7 +16,7 @@
         [cdkDropListData]="depotArticles"
         class="depot-container"
         (cdkDropListDropped)="drop($event)">
-             <button class="box" *ngFor="let article of depotArticles" cdkDrag>
+             <button class="depot-box" *ngFor="let article of depotArticles" cdkDrag>
                 {{article.label}}<br>
                 {{article.content}}
                 <button class="btn btn-xs btn-outline-primary" (click)="open(content)">Modifier le texte</button>
@@ -37,5 +37,8 @@
                   </ng-template>
             </button>
     </div> 
+    <div class="editDoc-container">
+      <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="edit()">éditer le document</button>
+    </div>
 </div>
 
