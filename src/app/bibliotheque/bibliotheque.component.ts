@@ -85,5 +85,6 @@ export class BibliothequeComponent  {
     this.modalService.open(content);
   }
 
+  
 
 }

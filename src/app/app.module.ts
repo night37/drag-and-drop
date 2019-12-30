@@ -8,6 +8,7 @@ import { BibliothequeComponent } from './bibliotheque/bibliotheque.component';
 import { ViewHtmlComponent } from './view-html/view-html.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     ViewHtmlComponent,
   ],
   imports: [
+    FontAwesomeModule,  
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
