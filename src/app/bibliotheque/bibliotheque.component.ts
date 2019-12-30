@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import {CdkDragDrop, moveItemInArray, copyArrayItem} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -74,16 +74,15 @@ export class BibliothequeComponent  {
       
      
     } else {
-      copyArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);                        
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);                        
     }
   }   
 
   open(content) {
     this.modalService.open(content);
-    Object.seal(this.bibliothequeArticles)
   }
 
 
