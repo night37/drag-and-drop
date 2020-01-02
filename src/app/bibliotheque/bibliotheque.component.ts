@@ -1,7 +1,10 @@
 import { Component} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import * as data from "../json/data.json"
+import {saveAs} from "file-saver"
+import * as data from "../json/data.json";
+import * as hmtlDocx from "html-docx-js";
+
 
 
 
@@ -91,7 +94,9 @@ export class BibliothequeComponent  {
     console.log(this.bibliothequeArticles)
   }
   edit(){
-
+  
+    /* var converted = .asBlob(content);
+    saveAs(converted, 'test.docx'); */
     
   }
 
