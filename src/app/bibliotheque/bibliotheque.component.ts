@@ -1,9 +1,15 @@
 import { Component} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {saveAs} from "file-saver"
+import {saveAs} from "file-saver";
 import * as data from "../json/data.json";
-import * as hmtlDocx from "html-docx-js";
+//import {Document, HeadingLevel, Paragraph, Packer,} from "docx";
+
+
+
+
+
+
 
 
 
@@ -87,17 +93,51 @@ export class BibliothequeComponent  {
   open(content) {
     this.modalService.open(content);
   }
+
   ngOnInit() {
     const importation =  (data  as  any).default
     this.bibliothequeArticles.push(importation);
     console.log(importation)
     console.log(this.bibliothequeArticles)
   }
-  edit(){
-  
-    /* var converted = .asBlob(content);
-    saveAs(converted, 'test.docx'); */
-    
+
+  // création d'un element html--------------------
+
+  /* generateHTML(){
+
+    let sourceHTML = ""
+    if (this.depotArticles.length > 0){
+      for(let article of this.depotArticles){
+
+        sourceHTML += "<h1>" + article.label + "</h1>"
+        sourceHTML += "<p>" + article.content + "</p>"
+
+      }
+    }
+    return sourceHTML    
   }
+  
+  generateDocx(){
+    const doc = new Document ()
+    doc.addSection({
+      children:[
+        new Paragraph({
+          text : "hello world"
+        })
+      ]
+    
+    })
+    Packer.toBuffer(doc).then((buffer) =>{
+      let blob = new Blob(["Hello world"],{type:"text/plain"});
+      let url = URL.createObjectURL(blob);
+      console.log(url)
+      //document.querySelector("a").href = url;
+
+   
+    });
+
+  } */
+
+
 
 }
