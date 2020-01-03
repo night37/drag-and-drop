@@ -97,8 +97,7 @@ export class BibliothequeComponent  {
   ngOnInit() {
     const importation =  (data  as  any).default
     this.bibliothequeArticles.push(importation);
-    console.log(importation)
-    console.log(this.bibliothequeArticles)
+
   }
 
   
@@ -130,8 +129,7 @@ export class BibliothequeComponent  {
     h1.textContent = labelSourceHTML;
     article.textContent = articleSourceHTML
 
-    console.log(labelSourceHTML)
-    console.log(newDoc)
+   
     //window.open(newDoc,"_blank")   
   }
   
