@@ -101,43 +101,78 @@ export class BibliothequeComponent  {
     console.log(this.bibliothequeArticles)
   }
 
-  // création d'un element html--------------------
+  
 
-  /* generateHTML(){
+  generateHTML(){
 
-    let sourceHTML = ""
+    let labelSourceHTML = ""
+    let articleSourceHTML =""
+    let newDoc = document.implementation.createHTMLDocument("depot html ")
+    let container =newDoc.createElement("div")
+    container.setAttribute("container","div")
+    let h1 = newDoc.createElement ("h1")
+    let article = newDoc.createElement("article")
+  
+    newDoc.body.appendChild(container)
+    container.appendChild(h1)
+    //div.appendChild(h1)
+    //div.append(article)
+    
     if (this.depotArticles.length > 0){
       for(let article of this.depotArticles){
+        
+        labelSourceHTML = article.label 
+        articleSourceHTML = article.content 
 
-        sourceHTML += "<h1>" + article.label + "</h1>"
-        sourceHTML += "<p>" + article.content + "</p>"
-
+        
       }
     }
-    return sourceHTML    
+    h1.textContent = labelSourceHTML;
+    article.textContent = articleSourceHTML
+
+    console.log(labelSourceHTML)
+    console.log(newDoc)
+    //window.open(newDoc,"_blank")   
   }
   
-  generateDocx(){
-    const doc = new Document ()
-    doc.addSection({
-      children:[
-        new Paragraph({
-          text : "hello world"
-        })
-      ]
-    
-    })
-    Packer.toBuffer(doc).then((buffer) =>{
-      let blob = new Blob(["Hello world"],{type:"text/plain"});
-      let url = URL.createObjectURL(blob);
-      console.log(url)
-      //document.querySelector("a").href = url;
+   Export2Doc(element, filename = ''){
+     
+    var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    var postHtml = "</body></html>";
+    let depotArticles = this.depotArticles
 
-   
+    console.log(depotArticles)
+    var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+
+    var blob = new Blob(['\ufeff', html], {
+        type: 'application/msword'
     });
+    
+    // Specify link url
+    var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    
+    // Specify file name
+    filename = filename?filename+'.doc':'document.doc';
+    
+    // Create download link element
+    var downloadLink = document.createElement("a");
 
-  } */
-
-
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob ){
+        navigator.msSaveOrOpenBlob(blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = url;
+        
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+    
+    document.body.removeChild(downloadLink);
+}
 
 }

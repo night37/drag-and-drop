@@ -16,10 +16,12 @@
         [cdkDropListData]="depotArticles"
         class="depot-container"
         (cdkDropListDropped)="drop($event)">
+          <div id="exportContent">
              <button class="depot-box" *ngFor="let article of depotArticles" cdkDrag>
-                {{article.label}}<br>
-                {{article.content}}
-                <button class="btn btn-xs btn-outline-primary" (click)="open(content)">Modifier le texte</button>
+                  {{article.label}}<br>
+                  {{article.content}}<br>
+                
+                <button class="btn btn-xs btn-outline-primary" id="btnModif" (click)="open(content)"><i class="far fa-edit"></i></button>
                 <ng-template #content let-c="close" let-d="dismiss">
                     <div class="modal-header">
                       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -36,10 +38,14 @@
                     </div>
                   </ng-template>
             </button>
+          </div>
     </div> 
     <div class="editDoc-container">
-      <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="generateDocx()">convert to .docx</button>
+      <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="Export2Doc('exportContent')">convert to .docx</button>
+      <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="generateHTML()">convert to .html</button>
       
+     
+    
     </div>
 </div>
 

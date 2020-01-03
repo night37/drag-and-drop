@@ -9,6 +9,9 @@
   margin: 10px;
   border: 1px solid black;
 }
+#btnModif{
+  width:400px;
+  right:40px;}
 
 .bibliotheque-container{
   grid-column: 2;
