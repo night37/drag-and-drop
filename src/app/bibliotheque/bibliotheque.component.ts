@@ -68,14 +68,7 @@ export class BibliothequeComponent  {
     },
     
   ];
-  depotArticles = [
-    {
-      id: 6,
-      label: "titre6", 
-      content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia blanditiis amet sed doloribus temporibus. Quaerat, quibusdam, incidunt ab amet, esse nostrum perspiciatis perferendis neque eos ad beatae voluptas dolore doloremque."
-    },
-
-  ]
+  depotArticles = []
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -133,16 +126,24 @@ export class BibliothequeComponent  {
     //window.open(newDoc,"_blank")   
   }
   
-   Export2Doc(element, filename = ''){
+   Export2Doc(filename = ''){
      
     var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
     var postHtml = "</body></html>";
     let depotArticles = this.depotArticles
+    let docx = ""
+    
+    
+    for (let article of depotArticles){
+      docx += "<div>" + article.label + "</div> <br> <div>" + article.content + "</div><br>"
+    }
+    
+    
+    var html = preHtml+"<h1>Votre liste</h1>" + docx + postHtml;
 
-    console.log(depotArticles)
-    var html = preHtml+document.getElementById(element).innerHTML+postHtml;
 
-    var blob = new Blob(['\ufeff', html], {
+
+     var blob = new Blob(['\ufeff', html], {
         type: 'application/msword'
     });
     
@@ -170,7 +171,7 @@ export class BibliothequeComponent  {
         downloadLink.click();
     }
     
-    document.body.removeChild(downloadLink);
+    document.body.removeChild(downloadLink); 
 }
 
 }

@@ -16,7 +16,7 @@
         [cdkDropListData]="depotArticles"
         class="depot-container"
         (cdkDropListDropped)="drop($event)">
-          <div id="exportContent">
+          
              <button class="depot-box" *ngFor="let article of depotArticles" cdkDrag>
                   {{article.label}}<br>
                   {{article.content}}<br>
@@ -38,11 +38,11 @@
                     </div>
                   </ng-template>
             </button>
-          </div>
+          
     </div> 
     <div class="editDoc-container">
-      <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="Export2Doc('exportContent')">convert to .docx</button>
-      <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="generateHTML()">convert to .html</button>
+      <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="Export2Doc('test')">convert to .docx</button>
+      <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="generateHTML()">convert to .pdf</button>
       
      
     
