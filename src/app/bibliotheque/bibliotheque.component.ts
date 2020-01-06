@@ -95,35 +95,32 @@ export class BibliothequeComponent  {
 
   
 
-  generateHTML(){
-
-    let labelSourceHTML = ""
-    let articleSourceHTML =""
-    let newDoc = document.implementation.createHTMLDocument("depot html ")
-    let container =newDoc.createElement("div")
-    container.setAttribute("container","div")
-    let h1 = newDoc.createElement ("h1")
-    let article = newDoc.createElement("article")
-  
-    newDoc.body.appendChild(container)
-    container.appendChild(h1)
-    //div.appendChild(h1)
-    //div.append(article)
+  generatePDF(){
+    var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    var postHtml = "</body></html>";
+    let depotArticles = this.depotArticles
+    let docx = ""
     
-    if (this.depotArticles.length > 0){
-      for(let article of this.depotArticles){
-        
-        labelSourceHTML = article.label 
-        articleSourceHTML = article.content 
-
-        
-      }
+    
+    for (let article of depotArticles){
+      docx += "<div>" + article.label + "</div> <br> <div>" + article.content + "</div><br>"
     }
-    h1.textContent = labelSourceHTML;
-    article.textContent = articleSourceHTML
+    
+    
+    var html = preHtml+"<h1>Votre liste</h1>" + docx + postHtml;
 
-   
-    //window.open(newDoc,"_blank")   
+    console.log(html)
+
+
+
+     var blob = new Blob(['\ufeff', html], {
+        type: 'application/msword'
+    });
+    
+    // Specify link url
+    var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    
+
   }
   
    Export2Doc(filename = ''){
