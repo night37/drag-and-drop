@@ -10,7 +10,7 @@
             {{article.label}}</div>
          
     </div>
-    <div
+    <div id ="depot"
         cdkDropList
         #depotArticlesList="cdkDropList"
         [cdkDropListData]="depotArticles"
@@ -43,7 +43,8 @@
     <div class="editDoc-container">
       <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="Export2Doc('test')">convert to .docx</button>
       <button id="editDoc-btn" class="btn btn-xl btn-success" (click)="generatePDF()">convert to .pdf</button>
-      <h2>Hello world</h2>
+      
+    
      
     
     </div>

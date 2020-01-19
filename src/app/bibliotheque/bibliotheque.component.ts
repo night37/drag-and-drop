@@ -1,9 +1,9 @@
 import { Component} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {saveAs} from "file-saver";
 import * as data from "../json/data.json";
-//import {Document, HeadingLevel, Paragraph, Packer,} from "docx";
+import * as html2pdf from "html2pdf.js";
+
 
 
 
@@ -96,37 +96,53 @@ export class BibliothequeComponent  {
   
 
   generatePDF(){
-    var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
-    var postHtml = "</body></html>";
+    let preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    let postHtml = "</body></html>";
     let depotArticles = this.depotArticles
-    let docx = ""
+    let pdf = ""
     
     
     for (let article of depotArticles){
-      docx += "<div>" + article.label + "</div> <br> <div>" + article.content + "</div><br>"
+      pdf += "<div>" + article.label + "</div> <br> <div>" + article.content + "</div><br>"
     }
     
     
-    var html = preHtml+"<h1>Votre liste</h1>" + docx + postHtml;
+    let html = preHtml+"<h1>Votre liste</h1>" + pdf + postHtml;
+    let generate = document.querySelector(".editDoc-container");
+    let newDiv = document.createElement("div");
+    newDiv.className = "generatePdf";
+    newDiv.innerHTML = html;
+    generate.appendChild(newDiv);
 
-    console.log(html)
 
-
-
-     var blob = new Blob(['\ufeff', html], {
-        type: 'application/msword'
-    });
-    
-    // Specify link url
-    var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
     
 
+    const option= {
+      filename: "test.pdf",
+      image: {type:"jpeg"},
+      html2canvas:{},
+      jsPDF: { format  : "a4"}
+    }
+
+    const content : Element = document.querySelector(".generatePdf");
+
+
+    html2pdf()
+    .from(content)
+    .set(option)
+    .save()
+    generate.removeChild(newDiv)
+ 
+
+     
+
+  
   }
   
    Export2Doc(filename = ''){
      
-    var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
-    var postHtml = "</body></html>";
+    let preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    let postHtml = "</body></html>";
     let depotArticles = this.depotArticles
     let docx = ""
     
@@ -136,22 +152,22 @@ export class BibliothequeComponent  {
     }
     
     
-    var html = preHtml+"<h1>Votre liste</h1>" + docx + postHtml;
+    let html = preHtml+"<h1>Votre liste</h1>" + docx + postHtml;
 
 
 
-     var blob = new Blob(['\ufeff', html], {
+     let blob = new Blob(['\ufeff', html], {
         type: 'application/msword'
     });
     
     // Specify link url
-    var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    let url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
     
     // Specify file name
     filename = filename?filename+'.doc':'document.doc';
     
     // Create download link element
-    var downloadLink = document.createElement("a");
+    let downloadLink = document.createElement("a");
 
     document.body.appendChild(downloadLink);
     
