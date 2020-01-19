@@ -9,6 +9,10 @@
   margin: 10px;
   border: 1px solid black;
 }
+.depot-container>*{
+
+  width: 1000px;
+}
 #btnModif{
   width:400px;
   right:40px;}
